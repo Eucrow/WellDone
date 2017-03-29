@@ -1,0 +1,8 @@
+#virtual enviroment
+env/
+
+#database
+db.sqlite3
+
+#pycharm (opciones del proyecto de pycharm)
+.idea
