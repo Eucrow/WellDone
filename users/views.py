@@ -55,3 +55,42 @@ class SignUpSuccessView(TemplateView):
     Show template signup_success
     """
     template_name = 'users/signup_success.html'
+
+
+class DeleteUserView(View):
+    def get(self, request, pk):
+        """
+        Function to delete user
+        :param request:
+        :param pk: user id
+        :return:
+        """
+
+        try:
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            user = None
+        except User.MultipleObjects:
+            user = None
+
+        if user is not None:
+            user.delete()
+            message = "Usuario eliminado"
+            context = {'message': message}
+            return render(request, 'users/delete_user.html', context)
+        else:
+            message = "Error con el usuario"
+            context = {'message': message}
+            return render(request, 'users/delete_user.html', context)
+
+
+
+
+
+class DeleteUserSuccessView(TemplateView):
+    """
+    Show template delete_user_success
+    """
+    template_name = 'users/delete_user.html'
+
+

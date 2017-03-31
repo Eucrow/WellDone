@@ -25,3 +25,4 @@ class SignUpForm(forms.Form):
             raise ValidationError('Las contraseñas no coinciden')
 
 
+
