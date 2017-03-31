@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Registro de nuevo usuario
+{% endblock %}
+
+{% block body %}
+    <section>
+        <div>
+            <div>
+                {% if message %}
+                    {{ message }}
+                {% endif %}
+            </div>
+        <form class="signup-form" method="post" novalidate>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Signup</button>
+        </form>
+        </div>
+    </section>
+{% endblock %}
