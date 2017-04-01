@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 
 from users.forms import SignUpForm
 
+from django.utils.translation import ugettext as _
+
 
 # Create your views here.
 class SignUpView(View):
@@ -68,20 +70,15 @@ class DeleteUserView(View):
 
         try:
             user = User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            user = None
-        except User.MultipleObjects:
-            user = None
-
-        if user is not None:
             user.delete()
-            message = "Usuario eliminado"
-            context = {'message': message}
-            return render(request, 'users/delete_user.html', context)
-        else:
-            message = "Error con el usuario"
-            context = {'message': message}
-            return render(request, 'users/delete_user.html', context)
+            message = _("User deleted")
+        except User.DoesNotExist:
+            message = _("Error: user does not exists")
+        except User.MultipleObjects:
+            message = _("Error: there are multiple users!! :O")
+
+        context = {'message': message}
+        return render(request, 'users/delete_user.html', context)
 
 
 

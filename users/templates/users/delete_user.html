@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Usuario eliminado con éxito
+    {%  message %}
 {% endblock %}
 
 {% block body %}
     <section>
-            <div>{{ message }}</div>
+        {%  message %}
     </section>
 {% endblock %}
