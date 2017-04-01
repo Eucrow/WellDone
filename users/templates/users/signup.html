@@ -1,22 +1,22 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}
-    Registro de nuevo usuario
+
+    {% trans "Create new user" %}
+
 {% endblock %}
 
 {% block body %}
-    <section>
-        <div>
-            <div>
-                {% if message %}
-                    {{ message }}
-                {% endif %}
-            </div>
-        <form class="signup-form" method="post" novalidate>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button>Signup</button>
-        </form>
-        </div>
-    </section>
+
+    {% if message %}
+        {% trans message %}
+    {% endif %}
+
+    <form class="signup-form" method="post" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>{%  trans "Signup" %}</button>
+    </form>
+
 {% endblock %}

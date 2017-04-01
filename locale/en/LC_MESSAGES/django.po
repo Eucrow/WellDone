@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-01 12:22+0200\n"
+"POT-Creation-Date: 2017-04-01 14:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,14 +34,21 @@ msgstr "Signup"
 msgid "User created!"
 msgstr "User created!"
 
-#: .\users\views.py:80
+#: .\users\views.py:74
 #, fuzzy
 #| msgid "User deleted."
 msgid "User deleted"
 msgstr "User deleted"
 
-#: .\users\views.py:84
+#: .\users\views.py:76
+msgid "Error: user does not exists"
+msgstr "Error: user does not exists"
+
+#: .\users\views.py:78
+msgid "Error: there are multiple users!! :O"
+msgstr "Error: there are multiple users!! :O"
+
 #, fuzzy
-#| msgid "Error in user."
-msgid "Error in user"
-msgstr "Error in user"
+#~| msgid "Error in user."
+#~ msgid "Error in user"
+#~ msgstr "Error in user"

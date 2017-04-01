@@ -70,20 +70,15 @@ class DeleteUserView(View):
 
         try:
             user = User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            user = None
-        except User.MultipleObjects:
-            user = None
-
-        if user is not None:
             user.delete()
             message = _("User deleted")
-            context = {'message': message}
-            return render(request, 'users/delete_user.html', context)
-        else:
-            message = _("Error in user")
-            context = {'message': message}
-            return render(request, 'users/delete_user.html', context)
+        except User.DoesNotExist:
+            message = _("Error: user does not exists")
+        except User.MultipleObjects:
+            message = _("Error: there are multiple users!! :O")
+
+        context = {'message': message}
+        return render(request, 'users/delete_user.html', context)
 
 
 
