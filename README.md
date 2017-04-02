@@ -28,5 +28,5 @@ To delete a user, send a DELETE request to /api/0.1/delete_user/id_user.
 
 Result:
 ```
-
+"User deleted"
 ```
