@@ -42,7 +42,8 @@ class UserAPI(APIView):
 
         if user is not None:
             user.delete()
-            return Response(status=status.HTTP_204_NO_CONTENT)
+            message = _("User deleted")
+            return Response(message)
         else:
             message = _("User does not exists")
             return Response(message)
