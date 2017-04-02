@@ -4,9 +4,9 @@ WellDone: KeepCoding bootcamp final practise
 To install dependences, with the environment activate:
 ```pip install -r requirements.txt```
 
-####API ENDPOINTS
+#### API ENDPOINTS
 
-#####Create user (Signup)
+##### Create user (Signup)
 
 *POST /api/0.1/signup*
 
@@ -21,9 +21,8 @@ Result:
   "email": "my_email@amez.info",
   "password": "pbkd..."
 }
-
 ```
-#####Delete user
+##### Delete user
 
 *DELETE /api/0.1/delete_user/id_user*
 
