@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-01 14:18+0200\n"
+"POT-Creation-Date: 2017-04-02 15:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\users\api.py:45 .\users\views.py:74
+#, fuzzy
+#| msgid "User deleted."
+msgid "User deleted"
+msgstr "Usuario borrado"
+
+#: .\users\api.py:48
+#, fuzzy
+#| msgid "Error: user does not exists"
+msgid "User does not exists"
+msgstr "Error: el usuario no existe"
 
 #: .\users\templates\users\signup.html:6
 #, fuzzy
@@ -34,12 +46,6 @@ msgstr "Regístrate"
 #| msgid "User deleted."
 msgid "User created!"
 msgstr "¡Usuario creado!"
-
-#: .\users\views.py:74
-#, fuzzy
-#| msgid "User deleted."
-msgid "User deleted"
-msgstr "Usuario borrado"
 
 #: .\users\views.py:76
 msgid "Error: user does not exists"
