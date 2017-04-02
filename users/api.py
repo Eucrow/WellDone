@@ -11,6 +11,8 @@ from users.serializers import UserSerializer
 
 class UserAPI(APIView):
 
+
+
     def post(self, request):
         """
         Function to add user
@@ -32,7 +34,7 @@ class UserAPI(APIView):
         Function to delete user
         :param request:
         :param pk: id of the user to delete
-        :return:
+        :return: JSON with successfull or erroneus message
         """
 
         try:
@@ -42,10 +44,10 @@ class UserAPI(APIView):
 
         if user is not None:
             user.delete()
-            message = _("User deleted")
+            message = {'Message': _('User deleted')}
             return Response(message)
         else:
-            message = _("User does not exists")
+            message = {'Error': _('User does not exists')}
             return Response(message)
 
 
