@@ -19,7 +19,7 @@ Result:
   "first_name": "my_first_name",
   "last_name": "my_last_name",
   "email": "my_email@amez.info",
-  "password": "pbkd....."
+  "password": "pbkd..."
 }
 ```
 ##### Delete user
