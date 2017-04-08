@@ -5,8 +5,8 @@ from django.db import models
 class Follower(models.Model):
 
     foll_id = models.AutoField(primary_key=True)
-    user = models.ManyToManyField(User)
-    follower = models.ManyToManyField(User, related_name='followers')
+    user = models.ForeignKey(User)
+    follower = models.ForeignKey(User, related_name='u_follower')
 
     def __str__(self):
-        return self.user.name
+        return self.user.username + ' sigue ' + self.follower.username
