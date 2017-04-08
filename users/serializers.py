@@ -6,7 +6,7 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password', 'avatar')
         write_only_fields = ('password',)
 
     # Override the create method from ModelSerializer because, when a user is saved, Django Rest Framework use objects.create()

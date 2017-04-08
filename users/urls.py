@@ -1,5 +1,5 @@
 from users.api import UserAPI
-from users.views import SignUpView, SignUpSuccessView, DeleteUserView
+from profiles.views import SignUpView, SignUpSuccessView, DeleteUserView
 from django.conf.urls import url
 
 

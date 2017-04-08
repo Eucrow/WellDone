@@ -13,7 +13,7 @@
         {% trans message %}
     {% endif %}
 
-    <form class="signup-form" method="post" novalidate>
+    <form class="signup-form" method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
         <button>{%  trans "Signup" %}</button>
