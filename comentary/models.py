@@ -13,6 +13,17 @@ class Comentary(models.Model):
     likes = models.IntegerField(default=0)
     disikes = models.IntegerField(default=0)
     resp_comentary = models.ManyToManyField('self', blank=True)
+    create_at = models.DateField(auto_now_add=True)
+    modify_at = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.comentary[:30] + ' - ' + self.author.username
+        return self.comentary + ' - ' + self.author.username
+
+    """"
+        Método para obtener el número de comentarios de un post
+        :param: objeto Post
+        :return: numero de comentarios
+    """
+    def num_post_comentary(self, post):
+        num = Comentary.objects.all().select_related('post').filter(post=post).count()
+        return num

@@ -37,4 +37,4 @@ class Post(models.Model):
     modify_at = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return str(self.post_id) + ' - ' + self.title
