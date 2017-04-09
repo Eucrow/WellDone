@@ -33,6 +33,7 @@ class SignUpView(View):
         """
         user_form = SignUpForm(request.POST, request.FILES)
 
+
         if user_form.is_valid():
 
             user = Profile()

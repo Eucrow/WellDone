@@ -16,6 +16,8 @@
     <form class="signup-form" method="post" enctype="multipart/form-data" novalidate>
         {% csrf_token %}
         {{ form.as_p }}
+        {{ user.form }}
+        {{ profile.form }}
         <button>{%  trans "Signup" %}</button>
     </form>
 

@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
-
 class SignUpForm(forms.Form):
     username = forms.CharField(max_length=50, label=False,
                                widget=forms.TextInput(attrs={'placeholder': 'Nombre de usuario'}))
@@ -25,3 +24,17 @@ class SignUpForm(forms.Form):
         if password1 and password2 and password1 != password2:
             raise ValidationError('Las contraseñas no coinciden')
 
+##PRUEBAS:
+from django.forms import ModelForm
+
+from profiles.models import Profile
+
+# class UserForm(ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ('username', 'first_name', 'last_name', 'email', 'password','')
+#
+# class SignUpForm(ModelForm):
+#     class Meta:
+#         model = Profile
+#         fields = ('__all__')
