@@ -69,7 +69,7 @@ class DeleteUserView(View):
         """
 
         try:
-            user = User.objects.get(pk=pk)
+            user = get(pk=pk)
             user.delete()
             message = _("User deleted")
         except User.DoesNotExist:

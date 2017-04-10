@@ -38,7 +38,7 @@ class UserAPI(APIView):
         """
 
         try:
-            user = User.objects.get(pk=pk)
+            user = get(pk=pk)
         except User.DoesNotExist:
             user = None
 

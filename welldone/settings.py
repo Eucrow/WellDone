@@ -39,7 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'welldone',
-    'rest_framework',
+    'post',
+    'category',
+    'comentary',
+    'favorites',
+    'follower',
+    'post_underline'
 ]
 
 MIDDLEWARE = [
@@ -125,12 +130,3 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-
-
-# REST Framework Settings
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    )
-}
