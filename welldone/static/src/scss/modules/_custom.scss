@@ -1,0 +1,11 @@
+// Bootstrap overrides
+//
+// Copy variables from `vendor/bootstrap/_variables.scss` to this file to override default values
+// without modifying source files.
+
+$brand-primary:             $primary !default;
+$brand-success:             $success !default;
+$brand-warning:             $warning !default;
+$brand-danger:              $error !default;
+
+$font-family-sans-serif: Roboto, "Segoe UI", Arial, sans-serif !default;
