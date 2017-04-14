@@ -74,7 +74,7 @@ class DeleteUserView(View):
             message = _("User deleted")
         except User.DoesNotExist:
             message = _("Error: user does not exists")
-        except User.MultipleObjects:
+        except User.MultipleObjectsReturned :
             message = _("Error: there are multiple users!! :O")
 
         context = {'message': message}

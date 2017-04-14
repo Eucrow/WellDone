@@ -1,11 +1,10 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}
-    {%  message %}
+    {% trans message %}
 {% endblock %}
 
 {% block body %}
-    <section>
-        {%  message %}
-    </section>
+    {%  trans message %}
 {% endblock %}
