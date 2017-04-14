@@ -1,5 +1,6 @@
 #virtual enviroment
 env/
+win_env/
 
 #database
 db.sqlite3
@@ -9,3 +10,5 @@ db.sqlite3
 
 #python bytecode files  (archivos precompilados de python)
 *.pyc
+
+node_modules/
