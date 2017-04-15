@@ -36,8 +36,8 @@ class SignUpView(View):
 
             user = User()
             user.username = user_form.cleaned_data.get('username')
-            user.first_name = user_form.cleaned_data.get('first_name')
-            user.last_name = user_form.cleaned_data.get('last_name')
+            # user.first_name = user_form.cleaned_data.get('first_name')
+            # user.last_name = user_form.cleaned_data.get('last_name')
             user.email = user_form.cleaned_data.get('email')
             user.set_password(user_form.cleaned_data.get('password1'))
 
