@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-02 15:44+0200\n"
+"POT-Creation-Date: 2017-04-15 12:43+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,17 +18,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\users\api.py:45 .\users\views.py:74
+#: .\users\api.py:47 .\users\views.py:74
 #, fuzzy
 #| msgid "User deleted."
 msgid "User deleted"
 msgstr "Usuario borrado"
 
-#: .\users\api.py:48
+#: .\users\api.py:50
 #, fuzzy
 #| msgid "Error: user does not exists"
 msgid "User does not exists"
 msgstr "Error: el usuario no existe"
+
+#: .\users\forms.py:9
+#, fuzzy
+#| msgid "User deleted."
+msgid "User name"
+msgstr "¡Usuario creado!"
+
+#: .\users\forms.py:10
+msgid "Name"
+msgstr "Nombre"
+
+#: .\users\forms.py:11
+msgid "Surname"
+msgstr "Apellidos"
+
+#: .\users\forms.py:12
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: .\users\forms.py:13
+msgid "Password"
+msgstr "Contraseña"
+
+#: .\users\forms.py:14
+msgid "Repeat password"
+msgstr "Repite la contraseña"
+
+#: .\users\forms.py:26
+#, fuzzy
+#| msgid "Passwords doesnt match"
+msgid "Passwords doesn't match"
+msgstr "Las constraseñas no coinciden"
 
 #: .\users\templates\users\signup.html:6
 #, fuzzy
