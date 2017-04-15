@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-15 12:43+0200\n"
+"POT-Creation-Date: 2017-04-15 12:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,30 +19,16 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\users\api.py:47 .\users\views.py:74
-#, fuzzy
-#| msgid "User deleted."
 msgid "User deleted"
 msgstr "Usuario borrado"
 
 #: .\users\api.py:50
-#, fuzzy
-#| msgid "Error: user does not exists"
 msgid "User does not exists"
 msgstr "Error: el usuario no existe"
 
 #: .\users\forms.py:9
-#, fuzzy
-#| msgid "User deleted."
-msgid "User name"
+msgid "Username"
 msgstr "¡Usuario creado!"
-
-#: .\users\forms.py:10
-msgid "Name"
-msgstr "Nombre"
-
-#: .\users\forms.py:11
-msgid "Surname"
-msgstr "Apellidos"
 
 #: .\users\forms.py:12
 msgid "Email"
@@ -57,14 +43,10 @@ msgid "Repeat password"
 msgstr "Repite la contraseña"
 
 #: .\users\forms.py:26
-#, fuzzy
-#| msgid "Passwords doesnt match"
 msgid "Passwords doesn't match"
-msgstr "Las constraseñas no coinciden"
+msgstr "Las contraseñas no coinciden"
 
 #: .\users\templates\users\signup.html:6
-#, fuzzy
-#| msgid "Error in user."
 msgid "Create new user"
 msgstr "Crear nuevo usuario"
 
@@ -72,10 +54,7 @@ msgstr "Crear nuevo usuario"
 msgid "Signup"
 msgstr "Regístrate"
 
-#: .\users\templates\users\signup_success.html:5
 #: .\users\templates\users\signup_success.html:10
-#, fuzzy
-#| msgid "User deleted."
 msgid "User created!"
 msgstr "¡Usuario creado!"
 
@@ -86,8 +65,3 @@ msgstr "Error: el usuario no existe"
 #: .\users\views.py:78
 msgid "Error: there are multiple users!! :O"
 msgstr "Error: hay multiples usuarios!! :O"
-
-#, fuzzy
-#~| msgid "Error in user."
-#~ msgid "Error in user"
-#~ msgstr "Error con ese usuario"

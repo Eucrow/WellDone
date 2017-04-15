@@ -6,9 +6,7 @@ from django.utils.translation import ugettext as _
 
 class SignUpForm(forms.Form):
     username = forms.CharField(max_length=50, label=False,
-                               widget=forms.TextInput(attrs={'placeholder': _('User name')}))
-    first_name = forms.CharField(label=False, widget=forms.TextInput(attrs={'placeholder': _('Name')}))
-    last_name = forms.CharField(label=False, widget=forms.TextInput(attrs={'placeholder': _('Surname')}))
+                               widget=forms.TextInput(attrs={'placeholder': _('Username')}))
     email = forms.CharField(label=False, widget=forms.EmailInput(attrs={'placeholder': _('Email')}))
     password1 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'placeholder': _('Password')}))
     password2 = forms.CharField(label=False, widget=forms.PasswordInput(attrs={'placeholder': _('Repeat password')}))
