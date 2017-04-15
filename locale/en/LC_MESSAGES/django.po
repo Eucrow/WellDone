@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-15 12:43+0200\n"
+"POT-Creation-Date: 2017-04-15 12:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,30 +18,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: .\users\api.py:47 .\users\views.py:74
-#, fuzzy
-#| msgid "User deleted."
 msgid "User deleted"
 msgstr "User deleted"
 
 #: .\users\api.py:50
-#, fuzzy
-#| msgid "Error: user does not exists"
 msgid "User does not exists"
 msgstr "Error: user does not exists"
 
 #: .\users\forms.py:9
-#, fuzzy
-#| msgid "User deleted."
-msgid "User name"
-msgstr "User created!"
-
-#: .\users\forms.py:10
-msgid "Name"
-msgstr "Name"
-
-#: .\users\forms.py:11
-msgid "Surname"
-msgstr "Surname"
+msgid "Username"
+msgstr "Username"
 
 #: .\users\forms.py:12
 msgid "Email"
@@ -56,14 +42,10 @@ msgid "Repeat password"
 msgstr "Repeat password"
 
 #: .\users\forms.py:26
-#, fuzzy
-#| msgid "Passwords doesnt match"
 msgid "Passwords doesn't match"
 msgstr "Passwords doesn't match"
 
 #: .\users\templates\users\signup.html:6
-#, fuzzy
-#| msgid "Create new user."
 msgid "Create new user"
 msgstr "Create new user"
 
@@ -71,10 +53,7 @@ msgstr "Create new user"
 msgid "Signup"
 msgstr "Signup"
 
-#: .\users\templates\users\signup_success.html:5
 #: .\users\templates\users\signup_success.html:10
-#, fuzzy
-#| msgid "User deleted."
 msgid "User created!"
 msgstr "User created!"
 
@@ -85,8 +64,3 @@ msgstr "Error: user does not exists"
 #: .\users\views.py:78
 msgid "Error: there are multiple users!! :O"
 msgstr "Error: there are multiple users!! :O"
-
-#, fuzzy
-#~| msgid "Error in user."
-#~ msgid "Error in user"
-#~ msgstr "Error in user"
