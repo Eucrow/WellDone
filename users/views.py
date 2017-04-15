@@ -36,8 +36,6 @@ class SignUpView(View):
 
             user = User()
             user.username = user_form.cleaned_data.get('username')
-            # user.first_name = user_form.cleaned_data.get('first_name')
-            # user.last_name = user_form.cleaned_data.get('last_name')
             user.email = user_form.cleaned_data.get('email')
             user.set_password(user_form.cleaned_data.get('password1'))
 
@@ -74,14 +72,11 @@ class DeleteUserView(View):
             message = _("User deleted")
         except User.DoesNotExist:
             message = _("Error: user does not exists")
-        except User.MultipleObjectsReturned :
+        except User.MultipleObjectsReturned:
             message = _("Error: there are multiple users!! :O")
 
         context = {'message': message}
         return render(request, 'users/delete_user.html', context)
-
-
-
 
 
 class DeleteUserSuccessView(TemplateView):
@@ -89,5 +84,3 @@ class DeleteUserSuccessView(TemplateView):
     Show template delete_user_success
     """
     template_name = 'users/delete_user.html'
-
-
