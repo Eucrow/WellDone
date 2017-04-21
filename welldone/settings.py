@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -44,7 +46,15 @@ INSTALLED_APPS = [
     'comentary',
     'favorites',
     'follower',
-    'post_underline'
+    'post_underline',
+    'rest_framework', #to JWT auth
+    'rest_framework.authtoken', #to JWT auth
+    'rest_auth', #to JWT auth
+    'django.contrib.sites', #to JWT  auth
+    'allauth', #to JWT auth
+    'allauth.account', #to JWT auth
+    'rest_auth.registration', #to JWT auth
+
 ]
 
 MIDDLEWARE = [
@@ -130,3 +140,28 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Sites
+SITE_ID = 1
+
+# No enviar e-mail de verificacion de cuenta
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+# REST framework settings
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication', # Allow authenticate by API Key
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication', # Allow authenticate by JWT
+        # ...
+    ),
+
+    # ...
+}
+
+# JWT
+REST_USE_JWT = True # Al hacer login, nos devuelve el jwt
+
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+}
