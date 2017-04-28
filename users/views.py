@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.contrib.sites import requests
 
 from django.views import View
 
@@ -11,6 +12,9 @@ from django.utils.translation import ugettext as _
 
 
 # Create your views here.
+from users.serializers import UserSerializer
+
+
 class SignUpView(View):
     def get(self, request):
         """
@@ -31,6 +35,15 @@ class SignUpView(View):
         :return:
         """
         user_form = SignUpForm(request.POST)
+
+        if user_form.is_valid():
+            r = requests.get('http://api/rest-auth/registration/')
+            json = r.json()
+            serializer = UserSerializer(data=json)
+            if serializer.is_valid():
+                user = User()
+                user.save()
+                return redirect('signup_success')
 
         if user_form.is_valid():
 

@@ -20,14 +20,16 @@ from rest_framework_jwt.views import refresh_jwt_token, verify_jwt_token
 from users import urls as users_urls
 from comentary import urls as comentary_urls
 from post import urls as post_urls
+from welldone.views import ProfilesAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include(users_urls)),
     url(r'', include(comentary_urls)),
     url(r'', include(post_urls)),
-    url(r'^api/rest-auth/', include('rest_auth.urls')),
-    url(r'^api/rest-auth/registration/', include('rest_auth.registration.urls')),
-    url(r'^api/api-token-refresh/', refresh_jwt_token),
-    url(r'^api/api-token-verify/', verify_jwt_token),
+
+
+    #conexión con microservicio de profiles
+    url(r'api/detail/(?P<pk>.+)$', ProfilesAPIView.as_view()),
+    url(r'detail/(?P<pk>.+)$', ProfilesAPIView.as_view())
 ]
