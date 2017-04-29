@@ -6,6 +6,26 @@ To install dependences, with the environment activate:
 
 #### API ENDPOINTS
 
+To use the API Gateway, are available the django-rest-auth endpoints:
+
+##### Registration
+
+- rest-auth/registration/ (POST)
+ * username
+ * password1
+ * password2
+ * email
+
+##### Login
+- /rest-auth/login/ (POST)
+ * username
+ * email
+ * password
+
+Returns Token key
+
+
+<!---
 ##### Create user (Signup)
 
 *POST /api/0.1/signup*
@@ -32,3 +52,4 @@ Result:
 ```
 "User deleted"
 ```
+--->
