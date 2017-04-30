@@ -1,3 +1,5 @@
+import json
+
 import pika
 from django.db import models
 
@@ -14,10 +16,14 @@ def create_user_profile(sender, instance, created, **kwargs):
         print("Hulap")
         connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
         channel = connection.channel()
-        channel.queue_declare(queue='hello')
+        channel.queue_declare(queue='create_user')
+        event = {
+            "type": "create",
+            "id_user": instance.id
+        }
         channel.basic_publish(exchange='',
-                              routing_key='hello',
-                              body='Hello World!')
+                              routing_key='create_user',
+                              body=json.dumps(event))
         print(" [x] Sent 'Hello World!'")
         connection.close()
 
