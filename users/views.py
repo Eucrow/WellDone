@@ -1,5 +1,5 @@
+import requests
 from django.contrib.auth.models import User
-from django.contrib.sites import requests
 
 from django.views import View
 
@@ -30,31 +30,31 @@ class SignUpView(View):
 
     def post(self, request):
         """
-        Method to save the new user
+        Method to save the new user calling to the rest-auth registration endpoint
         :param request:
         :return:
         """
         user_form = SignUpForm(request.POST)
 
         if user_form.is_valid():
-            r = requests.get('http://api/rest-auth/registration/')
+            r = requests.post('http://127.0.0.1:8000/api/rest-auth/registration/', data=user_form.data)
             json = r.json()
-            serializer = UserSerializer(data=json)
+            serializer = UserSerializer(data=json.get('user'))
             if serializer.is_valid():
                 user = User()
                 user.save()
-                return redirect('signup_success')
-
-        if user_form.is_valid():
-
-            user = User()
-            user.username = user_form.cleaned_data.get('username')
-            user.email = user_form.cleaned_data.get('email')
-            user.set_password(user_form.cleaned_data.get('password1'))
-
-            user.save()
-
             return redirect('signup_success')
+
+        # if user_form.is_valid():
+        #
+        #     user = User()
+        #     user.username = user_form.cleaned_data.get('username')
+        #     user.email = user_form.cleaned_data.get('email')
+        #     user.set_password(user_form.cleaned_data.get('password1'))
+        #
+        #     user.save()
+        #
+        #     return redirect('signup_success')
 
         else:
 
