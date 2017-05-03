@@ -9,10 +9,8 @@ from rest_framework.response import Response
 
 from users.serializers import UserSerializer
 
+
 class UserAPI(APIView):
-
-
-
     def post(self, request):
         """
         Function to add user
@@ -22,12 +20,14 @@ class UserAPI(APIView):
 
         serializer = UserSerializer(data=request.data)
 
-        if serializer.is_valid(): #si el usuario es válido
-            new_user = serializer.save() #grabamos el nuevo usuario
-            return Response(serializer.data, status.HTTP_201_CREATED)#devolvemos lo que hemos grabado en la base de datos (es opcional)
-                                                                    # y un mensaje 201 de que ha sido creado
+        if serializer.is_valid():  # si el usuario es válido
+            new_user = serializer.save()  # grabamos el nuevo usuario
+            return Response(serializer.data,
+                            status.HTTP_201_CREATED)  # devolvemos lo que hemos grabado en la base de datos (es opcional)
+            # y un mensaje 201 de que ha sido creado
         else:
-            return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)#si hay en error, el serializer lo guarda en serializers.error
+            return Response(serializer.errors,
+                            status.HTTP_400_BAD_REQUEST)  # si hay en error, el serializer lo guarda en serializers.error
 
     def delete(self, request, pk):
         """
@@ -38,7 +38,7 @@ class UserAPI(APIView):
         """
 
         try:
-            user = get(pk=pk)
+            user = User.objects.get(pk=pk)
         except User.DoesNotExist:
             user = None
 
@@ -49,5 +49,3 @@ class UserAPI(APIView):
         else:
             message = {'Error': _('User does not exists')}
             return Response(message)
-
-
