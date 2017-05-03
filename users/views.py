@@ -30,7 +30,7 @@ class SignUpView(View):
 
     def post(self, request):
         """
-        Method to save the new user calling to the rest-auth registration endpoint
+        Method to save the new user by calling to the rest-auth registration endpoint
         :param request:
         :return:
         """

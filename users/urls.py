@@ -12,7 +12,9 @@ urlpatterns = [
 
     # api urls
     # url(r'^api/0.1/signup$', UserAPI.as_view(), name="signup_api"),
-    # url(r'^api/0.1/delete_user/(?P<pk>[0-9]+)$', UserAPI.as_view(), name="delete_user_api"),
+
+    # We need an endpoint to delete user because rest-auth doesn't has it.
+    url(r'^api/0.1/delete_user/(?P<pk>[0-9]+)$', UserAPI.as_view(), name="delete_user_api"),
 
     #api JWT auth
     url(r'^api/rest-auth/', include('rest_auth.urls')),

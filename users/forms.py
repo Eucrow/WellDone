@@ -16,12 +16,13 @@ class SignUpForm(forms.Form):
         user_exists = User.objects.filter(username=self.cleaned_data.get("username"))
 
         if len(user_exists) != 0:
-            raise ValidationError('This user already exists')
+            raise ValidationError(_('This user already exists'))
 
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
             raise ValidationError(_("Passwords doesn't match"))
+
 
 
 
