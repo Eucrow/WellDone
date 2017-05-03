@@ -10,12 +10,14 @@ const dirs = {
 const config = {
     src_path : {
         'sass': `${dirs.src}/scss/*.scss`,
-        'js': `${dirs.src}/js/*.js`
+        'js': `${dirs.src}/js/*.js`,
+        'img': `${dirs.src}/img`
     },
 
     dist_path : {
         'css': `${dirs.dist}/css`,
-        'js': `${dirs.dist}/js`
+        'js': `${dirs.dist}/js`,
+        'img': `${dirs.dist}/img`
     }
 }
 

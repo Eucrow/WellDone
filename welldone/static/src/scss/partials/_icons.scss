@@ -1,0 +1,7 @@
+@import "../modules/sprite";
+
+@include sprites($spritesheet-sprites);
+
+.icon {
+    display: block;
+}
