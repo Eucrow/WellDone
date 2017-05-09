@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
@@ -34,18 +35,26 @@ class UserAPI(APIView):
         Function to delete user
         :param request:
         :param pk: id of the user to delete
-        :return: JSON with successfull or erroneus message
+        :return: JSON with successful or erroneous message
         """
 
-        try:
-            user = User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            user = None
+        user_authenticated = User(request.user.pk)
 
-        if user is not None:
-            user.delete()
-            message = {'Message': _('User deleted')}
-            return Response(message)
+        #TODO: esto es una chapuza, lo de convertir el pk en entero
+        if user_authenticated.pk == int(pk):
+
+            try:
+                user = User.objects.get(pk=pk)
+            except User.DoesNotExist:
+                user = None
+
+            if user is not None:
+                user.delete()
+                message = {'Message': _('User deleted')}
+                return Response(message)
+            else:
+                message = {'Error': _('User does not exists')}
+                return Response(message)
         else:
-            message = {'Error': _('User does not exists')}
+            message = {'Error': _('You don´t have permission to remove this user')}
             return Response(message)
