@@ -3,6 +3,8 @@
 // Copy variables from `vendor/bootstrap/_variables.scss` to this file to override default values
 // without modifying source files.
 
+
+// Este archivo será importado en la base de bootstrap para sobreescribir variables
 $brand-primary:             $primary !default;
 $brand-success:             $success !default;
 $brand-warning:             $warning !default;

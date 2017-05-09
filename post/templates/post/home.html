@@ -1,6 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block body %}
+    <div class="row">
+        <div class="col">
+            <img class="d-block img-fluid" src="{% static 'dist/img/slide1_hd.jpg' %}" alt="First slide">
+        </div>
+    </div>
     <h1>Bienvenido a WellDone</h1>
     <p>Blogs para todo el mundo</p>
     {% include "post/includes/post_list_if.html" %}

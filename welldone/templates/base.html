@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}WellDone{% endblock %}</title>
+    <title>{% block title %}WellDone - Donde a la gente le importa lo que tienes que decir{% endblock %}</title>
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aref+Ruqaa|Prompt">
     <link rel="stylesheet" href="{% static 'dist/css/vendor.min.css' %}">
@@ -15,16 +15,15 @@
 <body>
 
     <header class="app-header">
-        <h1 class="header-title">WellDone</h1>
+        {% include 'includes/header.html' %}
     </header>
 
-    <main class="app-content container">
-        {% block body %}
-        {% endblock %}
+    <main class="app-content">
+        {% block body %}{% endblock %}
     </main>
 
-    <footer class="app-footer container">
-        <p>WellDone</p>
+    <footer class="app-footer">
+        {% include 'includes/footer.html' %}
     </footer>
 
     <!-- jQuery CDN -->

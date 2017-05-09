@@ -1,0 +1,58 @@
+.app-header {
+    background-color: $white;
+
+    .topbar {
+        padding: 15px;
+
+        .brand-link {
+            color: $black;
+            text-decoration: none;
+        }
+
+        &-title {
+            font-family: "Aref Ruqaa", Roboto, sans-serif;
+            font-weight: 700;
+            font-size: 1.8em;
+        }
+    }
+
+    .navbar {
+        display: none;
+        overflow: hidden;
+        background-color: $smoke;
+
+        .nav-link {
+            color: $gray;
+            border-bottom: 1px solid transparent;
+            transition: all .25s;
+
+            &:hover, &:focus, &:active, &.active {
+                color: $primary;
+            }
+
+            &.active {
+                border-color: $primary;
+            }
+        }
+    }
+
+    @include md{
+        .topbar {
+            &-title {
+                font-size: 2.5rem;
+            }
+
+            #searchButtonLink {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                transform: translateY(100%);
+                z-index: 1;
+            }
+        }
+
+        .navbar {
+            display: block;
+        }
+    }
+}
