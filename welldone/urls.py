@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from rest_framework_jwt.views import refresh_jwt_token, verify_jwt_token
 
 from users import urls as users_urls
 from comentary import urls as comentary_urls
