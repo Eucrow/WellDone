@@ -1,10 +1,14 @@
 import requests
 from django.contrib.auth.models import User
+from django.http import HttpResponse
+from django.utils.encoding import smart_text
 
 from django.views import View
 
 from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
+from requests import Response
+from rest_framework.renderers import StaticHTMLRenderer
 
 from users.forms import SignUpForm
 
@@ -16,6 +20,7 @@ from users.serializers import UserSerializer
 
 
 class SignUpView(View):
+
     def get(self, request):
         """
         Method to show the form to create a new user
@@ -39,11 +44,16 @@ class SignUpView(View):
         if user_form.is_valid():
             r = requests.post('http://127.0.0.1:8000/api/rest-auth/registration/', data=user_form.data)
             json = r.json()
-            serializer = UserSerializer(data=json.get('user'))
-            if serializer.is_valid():
-                user = User()
-                user.save()
-            return redirect('signup_success')
+
+            request_get = 'http://127.0.0.1:9000/api/detail/detail/' + str(json.get('user').get('pk'))
+
+            r = requests.get(request_get)
+            r2 = smart_text(r.text)
+            r3 = smart_text(r.content)
+
+            return HttpResponse(r)
+            # return HttpResponse(smart_text(r.text))
+            # return redirect('api/detail/detail/' + str(json.get('user').get('pk')))
 
         # if user_form.is_valid():
         #
