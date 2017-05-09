@@ -9,20 +9,69 @@ To install dependences, with the environment activate:
 To use the API Gateway, are available the django-rest-auth endpoints:
 
 ##### Registration
-
-- rest-auth/registration/ (POST)
- * username
- * password1
- * password2
- * email
+* rest-auth/registration/ (POST)
+    * username
+    * password1
+    * password2
+    * email
+Return:
+```
+{
+  "token": "jwt token",
+  "user": {
+    "pk": 20,
+    "username": "username",
+    "email": "email@email.com",
+    "first_name": "first_name",
+    "last_name": "last_name"
+  }
+}
+```
 
 ##### Login
-- /rest-auth/login/ (POST)
- * username
- * email
- * password
+* /rest-auth/login/ (POST)
+    * username
+    * email
+    * password
 
-Returns Token key
+Return:
+```
+{
+  "token": "jwt token",
+  "user": {
+    "pk": 20,
+    "username": "username",
+    "email": "email@email.com",
+    "first_name": "first_name",
+    "last_name": "last_name"
+  }
+}
+```
+#### Delete user
+Only user can delete its own user.
+
+* /api/delete_user/id (DELETE)
+    * Authorization header with JWT token must be send.
+
+Return:
+```
+{
+  "Message": "Usuario borrado"
+}
+```
+
+#### Internationalization
+To use internationalization import:
+
+```
+from django.utils.translation import ugettext as _
+```
+
+Use example:
+
+```
+message = {'Message': _('User deleted')}
+```
 
 
 <!---
