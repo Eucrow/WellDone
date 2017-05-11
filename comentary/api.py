@@ -9,7 +9,7 @@ from comentary.views import ComentaryQueryset
 class ComentaryViewSet(ModelViewSet):
 
     permission_classes = (IsAuthenticated,)
-    search_fields = ('com_id', 'author',)
+    search_fields = ('com_id', 'author', 'post')
     filter_backends = (filters.SearchFilter,)
 
     def get_queryset(self):

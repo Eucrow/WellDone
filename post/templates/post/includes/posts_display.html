@@ -2,12 +2,13 @@
 <div class="art-container">
 			<article class="articulo">
 				<div class="visual-container">
-						<img class="visual" src="{{ post.url_media }}" alt="Imagen" height="200">
+						<img class="visual" src="../../media/{{ post.url_media }}" alt="Imagen" height="200">
 				</div>
 				<div class="text-container">
 					<h2 class="art-headline">{{ post.title }}</h2>
 					<p class="art-text"> {{ post.intro }}</p>
-					<a class="read-more" href="/blogs/{{ post.author.username }}/{{ post.pk }}">Leer más</a>
+					<div>{{ post.num_post_comentary }} Comentarios</div>
+					<a class="read-more" href="/blogs/{{ blogger }}/{{ post.pk }}">Leer más</a>
 				</div>
                 <hr>
 			</article>
