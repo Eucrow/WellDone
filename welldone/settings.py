@@ -140,6 +140,9 @@ LOCALE_PATHS = (
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+# para que las imágenes que se suben se carguen correctamente
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
 
 #Sites
 SITE_ID = 1
@@ -153,6 +156,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication', # Allow authenticate by API Key
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication', # Allow authenticate by JWT
+        'rest_framework.authentication.BasicAuthentication', # Para pruebas, el JWT no esta funcionando
         # ...
     ),
 
@@ -163,5 +167,6 @@ REST_FRAMEWORK = {
 REST_USE_JWT = True # Al hacer login, nos devuelve el jwt
 
 JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_ALLOW_REFRESH': True,
 }

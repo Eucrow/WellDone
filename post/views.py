@@ -10,16 +10,17 @@ from post.models import Post
 
 
 class PostQueryset(object):
-    @staticmethod
-    def get_num_comentary_post(post):
-        post_num_queryset = Post.objects.all()
 
-        """persona_queryset = Persona.objects.all().select_related('Usuario')
-        if not user.is_authenticated():
-            persona_queryset = None
-        else:
-            persona_queryset = persona_queryset.filter(Usuario=user)"""
-        return post_num_queryset
+    """
+        Obtener los post para el end point
+        :param user: objeto Usuario para filtrar la petición
+    """
+
+    @staticmethod
+    def get_posts(user):
+        post_queryset = Post.objects.all().select_related('author').filter(author=user)
+        return post_queryset
+
 
 class HomeView(View):
     def get(self, request):
