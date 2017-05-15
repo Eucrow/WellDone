@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'allauth', #to JWT auth
     'allauth.account', #to JWT auth
     'rest_auth.registration', #to JWT auth
-
+    'corsheaders', #para llamados desde cliente Angular
 ]
 
 MIDDLEWARE = [
@@ -66,6 +66,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'welldone.urls'
@@ -143,6 +144,9 @@ STATIC_URL = '/static/'
 # para que las imágenes que se suben se carguen correctamente
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "media")
+
+# para permitir llamados desde otros servidores
+CORS_ORIGIN_ALLOW_ALL = True
 
 #Sites
 SITE_ID = 1
