@@ -25,3 +25,8 @@ class ProfilesAPIView(ProxyView):
             }
             headers['Authorization'] = json.dumps(user)
         return headers
+
+
+class PostAPIView(ProxyView):
+    proxy_host = 'http://127.0.0.1:9001'
+    source = 'new-post/'

@@ -20,7 +20,7 @@ from welldone import settings
 from users import urls as users_urls
 from comentary import urls as comentary_urls
 from post import urls as post_urls
-from welldone.views import ProfilesAPIView
+from welldone.views import ProfilesAPIView, PostAPIView
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -32,5 +32,8 @@ urlpatterns = [
 
     #conexión con microservicio de profiles
     url(r'api/detail/(?P<pk>.+)$', ProfilesAPIView.as_view()),
-    url(r'detail/(?P<pk>.+)$', ProfilesAPIView.as_view())
+    url(r'detail/(?P<pk>.+)$', ProfilesAPIView.as_view()),
+
+    #conexion al microservicio de posts
+    url(r'^new-post', PostAPIView.as_view()),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
