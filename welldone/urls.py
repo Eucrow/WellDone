@@ -20,7 +20,9 @@ from welldone import settings
 from users import urls as users_urls
 from comentary import urls as comentary_urls
 from post import urls as post_urls
-from welldone.views import MyProfileDetailProxy, ProfileDetailProxy
+
+from welldone.views import MyProfileDetailProxy, ProfileDetailProxy, PostAPIView
+
 from django.conf.urls.static import static
 
 urlpatterns = [
@@ -33,4 +35,8 @@ urlpatterns = [
     #conexión con microservicio de profiles
     url(r'^api/detail/(?P<pk>.+)$', ProfileDetailProxy.as_view()),
     url(r'^api/detail$', MyProfileDetailProxy.as_view())
+
+
+    #conexion al microservicio de posts
+    url(r'^new-post', PostAPIView.as_view()),
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

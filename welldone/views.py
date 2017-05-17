@@ -31,7 +31,11 @@ class MyProfileDetailProxy(ProxyView):
 
 class ProfileDetailProxy(ProxyView):
     """
-    Proxy to any profile detail
+    Proxy to any public profile detail
     """
     proxy_host = 'http://127.0.0.1:9000'
     source = 'api/detail/%(pk)s'
+
+class PostAPIView(ProxyView):
+    proxy_host = 'http://127.0.0.1:9001'
+    source = 'new-post/'
