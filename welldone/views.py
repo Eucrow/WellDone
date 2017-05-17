@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
 
-from rest_framework.permissions import IsAuthenticated
 from rest_framework_proxy.views import ProxyView
 
 
-class ProfilesAPIView(ProxyView):
-    permission_classes = (IsAuthenticated,)
+class MyProfileDetailProxy(ProxyView):
+    """
+    Proxy to authorizated user profile detail
+    """
     proxy_host = 'http://127.0.0.1:9000'
-    source = 'api/detail/detail'
+    source = 'api/detail'
 
+    # define dinámicamente las cabeceras que queremos enviar:
     def get_headers(self, request):
-        headers = super(ProfilesAPIView, self).get_headers(request)
+        headers = super(MyProfileDetailProxy, self).get_headers(request)
         if request.user.is_authenticated():
             user = {
                 "id": request.user.id,
@@ -25,3 +27,11 @@ class ProfilesAPIView(ProxyView):
             }
             headers['Authorization'] = json.dumps(user)
         return headers
+
+
+class ProfileDetailProxy(ProxyView):
+    """
+    Proxy to any profile detail
+    """
+    proxy_host = 'http://127.0.0.1:9000'
+    source = 'api/detail/%(pk)s'
