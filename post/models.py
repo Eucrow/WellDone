@@ -31,7 +31,7 @@ class Post(models.Model):
     publicate_at = models.DateTimeField()
     state = models.CharField(max_length=1, choices=STATE_POST, default='1')
     type = models.CharField(max_length=1, choices=TYPE_POST, default='1')
-    author = models.ForeignKey(User)
+    author_id = models.ForeignKey(User)
     likes = models.IntegerField(default=0)
     comentaries = models.ManyToManyField(Comentary, blank=True)
     post_response = models.OneToOneField("self", null=True, blank=True)
