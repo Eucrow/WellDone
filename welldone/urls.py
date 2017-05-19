@@ -34,7 +34,7 @@ urlpatterns = [
 
     #conexión con microservicio de profiles
     url(r'^api/detail/(?P<pk>.+)$', ProfileDetailProxy.as_view()),
-    url(r'^api/detail$', MyProfileDetailProxy.as_view())
+    url(r'^api/detail$', MyProfileDetailProxy.as_view()),
 
 
     #conexion al microservicio de posts
