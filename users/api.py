@@ -4,7 +4,6 @@ from django.utils.translation import ugettext as _
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from users.permissions import ProfilePermission
 
 
 class UserAPI(APIView):

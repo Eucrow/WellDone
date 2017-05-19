@@ -4,7 +4,8 @@ from rest_framework.permissions import BasePermission
 class ProfilePermission(BasePermission):
     def has_permission(self, request, view):
         """
-        Define si un usuario puede ajecutar cierto método o acceder cierta vista/controlador
+        Define si un usuario puede ajecutar cierto método o acceder cierta vista/controlador.
+        Los métodos y endpoints de rest_auth no necesitan tener asignados permisos.
         Args:
             request:
             view: vista que se está ejecutando
@@ -24,9 +25,6 @@ class ProfilePermission(BasePermission):
         # only authenticated user can modify the profile
         if request.method == "PUT" and request.user.is_authenticated() and isinstance(view, MyProfileDetailProxy):
             return True
-
-        # if isinstance(view, MyProfileDetailAPI) and request.user.is_authenticated(): # si la vista que se está usando es ProfileDetailAPI
-        #     return True
 
         return False  # el resto, no tiene permisos
 
