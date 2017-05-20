@@ -14,10 +14,10 @@ class ProfilePermission(BasePermission):
 
         from users.api import UserAPI
         from welldone.views import \
-            MyProfileDetailProxy  # tenemos que importarlo aquí para evitar un problema de importación cíclica
+            ProfileDetailProxy, MyProfileDetailProxy  # tenemos que importarlo aquí para evitar un problema de importación cíclica
 
-        # only authenticated users can make a DELETE request:
-        if request.method == "DELETE" and request.user.is_authenticated() and isinstance(view, UserAPI):
+        # any user can view the public profiles
+        if request.method == "GET" and isinstance(view, ProfileDetailProxy):
             return True
         # only authenticated user can see the private profile
         if request.method == "GET" and request.user.is_authenticated() and isinstance(view, MyProfileDetailProxy):
@@ -25,6 +25,11 @@ class ProfilePermission(BasePermission):
         # only authenticated user can modify the profile
         if request.method == "PUT" and request.user.is_authenticated() and isinstance(view, MyProfileDetailProxy):
             return True
+        # only authenticated users can make a DELETE request:
+        if request.method == "DELETE" and request.user.is_authenticated() and isinstance(view, UserAPI):
+            return True
+
+
 
         return False  # el resto, no tiene permisos
 
