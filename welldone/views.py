@@ -39,5 +39,13 @@ class ProfileDetailProxy(ProxyView):
 
 class PostAPIView(ProxyView):
     proxy_host = 'http://127.0.0.1:9001'
-    source = 'home/'
+    source = 'postList/'
+    return_raw = True
+
+
+class CreatePostAPIView(ProxyView):
+    # Salto directamente al microservicio de post, para usar postman al crear no hace falta generar ninguna
+    proxy_host = 'http://127.0.0.1:9002'
+
+    source = 'api/1.0/posts/'
     return_raw = True
