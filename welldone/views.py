@@ -36,6 +36,8 @@ class ProfileDetailProxy(ProxyView):
     proxy_host = 'http://127.0.0.1:9000'
     source = 'api/detail/%(pk)s'
 
+
 class PostAPIView(ProxyView):
     proxy_host = 'http://127.0.0.1:9001'
-    source = 'new-post/'
+    source = 'home/'
+    return_raw = True

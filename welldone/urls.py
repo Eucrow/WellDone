@@ -18,18 +18,20 @@ from django.contrib import admin
 
 from welldone import settings
 from users import urls as users_urls
-from comentary import urls as comentary_urls
-from post import urls as post_urls
+# from comentary import urls as comentary_urls
+# from post import urls as post_urls
 
-from welldone.views import MyProfileDetailProxy, ProfileDetailProxy, PostAPIView
+# from welldone.views import views import MyProfileDetailProxy, ProfileDetailProxy, PostAPIView
 
 from django.conf.urls.static import static
+
+from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include(users_urls)),
-    url(r'', include(comentary_urls)),
-    url(r'', include(post_urls)),
+    # url(r'', include(comentary_urls)),
+    # url(r'', include(post_urls)),
 
 
     #conexión con microservicio de profiles
