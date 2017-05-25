@@ -13,10 +13,12 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 
 from welldone import settings
+
+from users import urls as users_urls
 
 
 from django.conf.urls.static import static
@@ -26,6 +28,7 @@ from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', PostAPIView.as_view(), name='posts_list'),
+    url(r'', include(users_urls)),
 
     #conexion al microservicio de posts
     url(r'^new-post$', CreatePostAPIView.as_view(), name='create_post'),

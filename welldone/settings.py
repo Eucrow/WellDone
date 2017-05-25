@@ -157,9 +157,9 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication', # Para pruebas, el JWT no esta funcionando
         # ...
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'users.permissions.ProfilePermission',
-    )
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'users.permissions.ProfilePermission',
+    # )
 
     # ...
 }
