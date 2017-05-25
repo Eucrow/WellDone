@@ -41,12 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'welldone',
-    'post',
-    'category',
-    'comentary',
-    'favorites',
-    'follower',
-    'post_underline',
     'rest_framework', #to JWT auth
     'rest_framework.authtoken', #to JWT auth
     'rest_auth', #to JWT auth
