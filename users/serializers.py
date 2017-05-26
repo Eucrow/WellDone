@@ -11,7 +11,6 @@ class UserSerializer(serializers.Serializer):
     username = serializers.CharField()
     email = serializers.EmailField()
     password = serializers.CharField()
-    url = serializers.URLField()
 
     def create(self, validated_data):
         instance = User()
@@ -23,7 +22,6 @@ class UserSerializer(serializers.Serializer):
         instance.username = validated_data.get('username')
         instance.email = validated_data.get('email')
         instance.password = make_password(validated_data.get('password'))
-        instance.profile.url = validated_data.get('url')
         instance.save()
         return instance
 
