@@ -17,15 +17,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 from users import urls as users_urls
-from comentary import urls as comentary_urls
-from post import urls as post_urls
 from welldone.views import ProfilesAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include(users_urls)),
-    url(r'', include(comentary_urls)),
-    url(r'', include(post_urls)),
 
 
     #conexión con microservicio de profiles

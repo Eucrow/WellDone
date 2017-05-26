@@ -6,6 +6,7 @@ from django.conf.urls import url, include
 urlpatterns = [
     # We need an endpoint to delete user because rest-auth doesn't has it ???
     url(r'^api/delete_user/(?P<pk>[0-9]+)$', UserAPI.as_view(), name="delete_user_api"),
+    url(r'^api/user/(?P<pk>[0-9]+)$', UserAPI.as_view(), name="get_user_data"),
 
     #api JWT auth
     url(r'^api/rest-auth/', include('rest_auth.urls')),
