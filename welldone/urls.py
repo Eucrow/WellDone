@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+
 from welldone import settings
 
 from users import urls as users_urls
@@ -25,8 +26,14 @@ from django.conf.urls.static import static
 
 from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView, CreatePostAPIView
 
+
+from users import urls as users_urls
+
+from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView, CreatePostAPIView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'', include(users_urls)),
     url(r'^$', PostAPIView.as_view(), name='posts_list'),
     url(r'', include(users_urls)),
 

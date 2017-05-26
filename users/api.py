@@ -1,75 +1,42 @@
-# from django.contrib.auth.models import User
-# from django.shortcuts import get_object_or_404
-# from django.utils.translation import ugettext as _
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-#
-#
-#
-# class UserAPI(APIView):
-#
-#     def delete(self, request, pk):
-#         """
-#         Function to delete user
-#         :param request:
-#         :param pk: id of the user to delete
-#         :return: JSON with successful or erroneous message
-#         """
-#         user = get_object_or_404(User, pk=pk)
-#
-#         self.check_object_permissions(request, user)
-#
-#         user.delete()
-#         message = {'Message': _('User deleted')}
-#         return Response(message)
-
-
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import CreateAPIView
+
+from django.utils.translation import ugettext as _
 from rest_framework.response import Response
-from rest_framework.status import HTTP_400_BAD_REQUEST, HTTP_202_ACCEPTED, \
-    HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 
-from users.permissions import UserPermission
-from users.serializers import UserSerializer
+from users.serializers import ProfileSerializer
+from users.models import Profile
 
 
-class SignupAPI(CreateAPIView):
-    """
-    Endpoint de creación de usuarios
-    """
-    permission_classes = (UserPermission,)
+class UserAPI(APIView):
+    def get(self, request, pk):
+        """
+        Get all the user data: from user model and profile model
+        :param request: 
+        :param pk: 
+        :return: 
+        """
 
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+        # Esto es lo que le he preguntado a Alberto, que no soy capaz de que me devuelva los
+        # datos de los dos modelos a la vez:
+        profile_data = Profile.objects.get(pk=pk)
 
+        serializer_profile = ProfileSerializer(profile_data)
 
-class UserDetailAPI(APIView):
-    """
-    Endpoint de detalle de un usuario
-    """
-    permission_classes = (UserPermission,)
+        return Response(serializer_profile.data)
 
-    def get(self, request, blogger):
-        user = get_object_or_404(User, username=blogger)
+    def delete(self, request, pk):
+        """
+        Function to delete user
+        :param request:
+        :param pk: id of the user to delete
+        :return: JSON with successful or error message
+        """
+        user = get_object_or_404(User, pk=pk)
+
         self.check_object_permissions(request, user)
-        serializer = UserSerializer(user)
-        return Response(serializer.data)
 
-    def put(self, request, blogger):
-        user = get_object_or_404(User, username=blogger)
-        self.check_object_permissions(request, user)
-        serializer = UserSerializer(user, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=HTTP_202_ACCEPTED)
-        else:
-            return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, blogger):
-        user = get_object_or_404(User, username=blogger)
-        self.check_object_permissions(request, user)
         user.delete()
-        return Response(status=HTTP_204_NO_CONTENT)
+        message = {'Message': _('User deleted')}
+        return Response(message)

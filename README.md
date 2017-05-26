@@ -14,6 +14,7 @@ To use the API Gateway, are available the django-rest-auth endpoints:
     * password1
     * password2
     * email
+
 Return:
 ```
 {
@@ -39,7 +40,7 @@ Return:
 {
   "token": "jwt token",
   "user": {
-    "pk": 20,
+    "pk": pk,
     "username": "username",
     "email": "email@email.com",
     "first_name": "first_name",
@@ -57,6 +58,47 @@ Return:
 ```
 {
   "Message": "Usuario borrado"
+}
+```
+
+#### Get user info
+Obtain user info. The user must be authenticated.
+
+* /api/rest-auth/user/ (GET)
+    * Authorization header with JWT token must be send.
+
+Return:
+```
+{
+    "pk": pk,
+    "username": "username",
+    "email": "email@email.com",
+    "first_name": "first_name",
+    "last_name": "last_name"
+}
+```
+
+#### Get user info
+Obtain user info. The user must be authenticated.
+
+* /api/rest-auth/user/ (GET)
+    * Authorization header with JWT token must be send.
+    * JSON with updated data:
+```
+    "username": "new_username",
+    "email": "new_email@email.com",
+    "first_name": "new_first_name",
+    "last_name": "new_last_name"
+```
+
+Return:
+```
+{
+    "pk": pk,
+    "username": "new_username",
+    "email": "new_email@email.com",
+    "first_name": "new_first_name",
+    "last_name": "new_last_name"
 }
 ```
 
