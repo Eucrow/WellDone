@@ -19,6 +19,8 @@ from django.contrib import admin
 
 from welldone import settings
 
+from users import urls as users_urls
+
 
 from django.conf.urls.static import static
 
@@ -33,6 +35,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include(users_urls)),
     url(r'^$', PostAPIView.as_view(), name='posts_list'),
+    url(r'', include(users_urls)),
 
     #conexion al microservicio de posts
     url(r'^new-post$', CreatePostAPIView.as_view(), name='create_post'),

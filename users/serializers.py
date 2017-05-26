@@ -11,6 +11,7 @@ class UserSerializer(ModelSerializer):
             fields = ('id', 'first_name', 'email')
 
 
+# no funciona: sólo devuelve bio y avatar_url
 class ProfileSerializer(ModelSerializer):
 
     user_profile = UserSerializer(source='id', read_only=True)
@@ -44,3 +45,4 @@ class ProfileSerializer(ModelSerializer):
 #     #         profile.avatar_url = avatar_url
 #     #         profile.save()
 #     #     return instance
+
