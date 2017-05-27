@@ -78,8 +78,8 @@ Return:
 }
 ```
 
-#### Get user info
-Obtain user info. The user must be authenticated.
+#### Update user info
+Update user info. The user must be authenticated.
 
 * /api/rest-auth/user/ (GET)
     * Authorization header with JWT token must be send.
