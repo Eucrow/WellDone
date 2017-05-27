@@ -1,7 +1,8 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
-<<<<<<< HEAD
+
 from rest_framework.exceptions import ValidationError
 
 
@@ -35,7 +36,6 @@ class UserSerializer(serializers.Serializer):
         if (self.instance is None or self.instance.email != email) and User.objects.filter(email=email).exists():
             raise ValidationError("El email {0} ya está en uso".format(email))
         return email.lower()
-=======
 
 from users.models import Profile
 
@@ -81,4 +81,3 @@ class ProfileSerializer(ModelSerializer):
 #     #         profile.save()
 #     #     return instance
 
->>>>>>> 0f62d4d3a20c6a20d05cd98e2e96608dab63c999

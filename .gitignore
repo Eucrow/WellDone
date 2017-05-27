@@ -12,3 +12,6 @@ db.sqlite3
 *.pyc
 
 node_modules/
+users/migrations/0001_initial.py
+migrations/__init__.py
+users/migrations/0002_auto_20170526_1810.py
