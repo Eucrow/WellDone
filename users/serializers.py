@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from rest_framework.serializers import ModelSerializer
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
+from users.models import Profile
 
 
 class UserSerializer(serializers.Serializer):
@@ -27,7 +28,8 @@ class UserSerializer(serializers.Serializer):
         return instance
 
     def validate_username(self, username):
-        if (self.instance is None or self.instance.username != username) and User.objects.filter(username=username).exists():
+        if (self.instance is None or self.instance.username != username) and User.objects.filter(
+                username=username).exists():
             raise ValidationError("El nombre de usuario {0} no está disponible".format(username))
         return username
 
@@ -37,18 +39,14 @@ class UserSerializer(serializers.Serializer):
         return email.lower()
 
 
-from users.models import Profile
-
-
 class UserSerializer(ModelSerializer):
     class Meta:
-            model = User
-            fields = ('id', 'first_name', 'email')
+        model = User
+        fields = ('id', 'first_name', 'email')
 
 
 # no funciona: sólo devuelve bio y avatar_url
 class ProfileSerializer(ModelSerializer):
-
     user_profile = UserSerializer(source='id', read_only=True)
     bio = serializers.CharField(max_length=100)
     avatar_url = serializers.URLField()
@@ -56,7 +54,6 @@ class ProfileSerializer(ModelSerializer):
     class Meta(UserSerializer.Meta):
         model = Profile
         fields = ('bio', 'avatar_url', 'user_profile')
-
 
 # class UserSerializer(UserDetailsSerializer):
 #
@@ -80,4 +77,3 @@ class ProfileSerializer(ModelSerializer):
 #     #         profile.avatar_url = avatar_url
 #     #         profile.save()
 #     #     return instance
-

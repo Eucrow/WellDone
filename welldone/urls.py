@@ -33,7 +33,6 @@ from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'', include(users_urls)),
     url(r'^$', PostAPIView.as_view(), name='posts_list'),
     url(r'', include(users_urls)),
 
