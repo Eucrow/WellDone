@@ -3,6 +3,8 @@ import json
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_proxy.views import ProxyView
+from django.contrib.auth.models import User
+from django.http import HttpResponseNotFound
 
 
 class MyProfileDetailProxy(ProxyView):
@@ -68,3 +70,32 @@ class CreatePostAPIView(ProxyView):
             headers['Authorization'] = str(request.user.id)
         return headers
 
+
+class UserPostsAPIView(ProxyView):
+    proxy_host = 'http://127.0.0.1:9001'
+    source = 'userPostList/'
+    return_raw = True
+
+    # def get_headers(self, request):
+    #     headers = super(UserPostsAPIView, self).get_headers(request)
+    #     if request.user.is_authenticated():
+    #         headers['Authorization'] = str(request.user.id)
+    #     return headers
+
+    def get(self, request, *args, **kwargs):
+        usuario = User
+        usuario = User.objects.all().filter(username=self.kwargs["blogger"])
+        if not usuario:
+            return HttpResponseNotFound("No existe ningún blog con este nombre")
+        else:
+            self.get_headers(self, request, usuario.username, usuario.id )
+        #     posts = self.get_queryset()
+        #     context = {'posts_list': posts, 'blogger': self.kwargs["blogger"]}
+        #     return render(request, 'post/user_posts.html', context)
+
+
+    def get_headers(self, request, blogger, blogger_id):
+        headers = super(UserPostsAPIView, self).get_headers(request)
+        headers['X-Blogger'] = blogger
+        headers['X-BloggerId'] = str(blogger_id)
+        return headers
