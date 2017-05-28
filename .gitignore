@@ -11,7 +11,8 @@ db.sqlite3
 #python bytecode files  (archivos precompilados de python)
 *.pyc
 
+#migrations from user model
+users/migrations/
+
 node_modules/
-users/migrations/0001_initial.py
-migrations/__init__.py
-users/migrations/0002_auto_20170526_1810.py
+
