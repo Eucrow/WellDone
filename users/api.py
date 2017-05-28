@@ -5,8 +5,8 @@ from django.utils.translation import ugettext as _
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from users.serializers import ProfileSerializer
-from users.models import Profile
+from users.serializers import ProfileSerializer, UserSerializer
+from users.models import UserProfile
 
 
 class UserAPI(APIView):
@@ -20,9 +20,10 @@ class UserAPI(APIView):
 
         # Esto es lo que le he preguntado a Alberto, que no soy capaz de que me devuelva los
         # datos de los dos modelos a la vez:
-        profile_data = Profile.objects.get(pk=pk)
+        profile_data = UserProfile.objects.get(pk=pk)
 
-        serializer_profile = ProfileSerializer(profile_data)
+        # serializer_profile = ProfileSerializer(profile_data)
+        serializer_profile = UserSerializer(profile_data)
 
         return Response(serializer_profile.data)
 

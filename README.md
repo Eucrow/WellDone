@@ -70,25 +70,30 @@ Obtain user info. The user must be authenticated.
 Return:
 ```
 {
-    "pk": pk,
-    "username": "username",
-    "email": "email@email.com",
-    "first_name": "first_name",
-    "last_name": "last_name"
+  "pk": pk,
+  "username": "username",
+  "email": "email@email.com",
+  "first_name": "first_name",
+  "last_name": "last_name"
+  "bio": "my bio",
+  "avatar_url": "http://avatar.com/avatar.jpg"
 }
 ```
 
 #### Update user info
-Update user info. The user must be authenticated.
+Update user info. The user must be authenticated and JWR must be send.
+
+Email info can't be updated.
 
 * /api/rest-auth/user/ (GET)
     * Authorization header with JWT token must be send.
     * JSON with updated data:
 ```
     "username": "new_username",
-    "email": "new_email@email.com",
     "first_name": "new_first_name",
-    "last_name": "new_last_name"
+    "last_name": "new_last_name",
+    "bio": "new bio",
+    "avatar_url": "http://avatar.com/newavatar.jpg"
 ```
 
 Return:
@@ -98,7 +103,9 @@ Return:
     "username": "new_username",
     "email": "new_email@email.com",
     "first_name": "new_first_name",
-    "last_name": "new_last_name"
+    "last_name": "new_last_name",
+    "bio": "new bio",
+    "avatar_url": "http://avatar.com/newavatar.jpg"
 }
 ```
 
