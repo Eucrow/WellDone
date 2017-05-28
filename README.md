@@ -85,7 +85,7 @@ Update user info. The user must be authenticated and JWR must be send.
 
 Email info can't be updated.
 
-* /api/rest-auth/user/ (GET)
+* /api/rest-auth/user/ (PUT)
     * Authorization header with JWT token must be send.
     * JSON with updated data:
 ```
