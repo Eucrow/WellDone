@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from users.serializers import ProfileSerializer, UserSerializer
+from users.serializers import UserSerializer
 from users.models import UserProfile
 
 

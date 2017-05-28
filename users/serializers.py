@@ -35,18 +35,6 @@ class UserSerializer(UserDetailsSerializer):
             profile.save()
         return instance
 
-
-# no funciona: sólo devuelve bio y avatar_url
-class ProfileSerializer(ModelSerializer):
-    #     user_profile = UserSerializer(source='id', read_only=True)
-    #     bio = serializers.CharField(max_length=100)
-    #     avatar_url = serializers.URLField()
-    #
-    #     class Meta(UserSerializer.Meta):
-    #         model = Profile
-    #         fields = ('bio', 'avatar_url', 'user_profile')
-    None
-
 # DE MANU:
 # class UserSerializer(serializers.Serializer):
 #     id = serializers.ReadOnlyField()
