@@ -67,7 +67,7 @@ class CreatePostAPIView(ProxyView):
             #     "is_staff": request.user.is_staff,
             #     "is_superuser": request.user.is_superuser
             # }
-            headers['Authorization'] = str(request.user.id)
+            headers['Authorization'] = str(request.user.pk)
         return headers
 
 
@@ -82,20 +82,22 @@ class UserPostsAPIView(ProxyView):
     #         headers['Authorization'] = str(request.user.id)
     #     return headers
 
-    def get(self, request, *args, **kwargs):
-        usuario = User
-        usuario = User.objects.all().filter(username=self.kwargs["blogger"])
+    # def get(self, request, *args, **kwargs):
+    #     usuario = User.objects.get(username=self.kwargs["blogger"])
+    #     if not usuario:
+    #         return HttpResponseNotFound("No existe ningún blog con este nombre")
+    #     else:
+    #         self.get_headers(self, request, usuario.username, usuario.id)
+            #     posts = self.get_queryset()
+            #     context = {'posts_list': posts, 'blogger': self.kwargs["blogger"]}
+            #     return render(request, 'post/user_posts.html', context)
+
+    def get_headers(self, request, *args, **kwargs):
+        usuario = User.objects.get(username=self.kwargs["blogger"])
         if not usuario:
             return HttpResponseNotFound("No existe ningún blog con este nombre")
         else:
-            self.get_headers(self, request, usuario.username, usuario.id )
-        #     posts = self.get_queryset()
-        #     context = {'posts_list': posts, 'blogger': self.kwargs["blogger"]}
-        #     return render(request, 'post/user_posts.html', context)
-
-
-    def get_headers(self, request, blogger, blogger_id):
-        headers = super(UserPostsAPIView, self).get_headers(request)
-        headers['X-Blogger'] = blogger
-        headers['X-BloggerId'] = str(blogger_id)
+            headers = super(UserPostsAPIView, self).get_headers(request)
+            headers['X-Blogger'] = usuario.username
+            headers['X-BloggerId'] = str(usuario.id)
         return headers
