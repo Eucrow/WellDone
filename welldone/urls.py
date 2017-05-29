@@ -39,10 +39,4 @@ urlpatterns = [
     #conexion al microservicio de posts
     url(r'^new-post$', CreatePostAPIView.as_view(), name='create_post'),
 
-    #conexión con microservicio de profiles
-    url(r'^api/detail/(?P<pk>.+)$', ProfileDetailProxy.as_view()),
-    url(r'^api/detail$', MyProfileDetailProxy.as_view()),
-
-
-
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
