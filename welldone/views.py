@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
 
+from django.http.response import HttpResponse
+from django.views import View
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_proxy.views import ProxyView
 from django.contrib.auth.models import User
 from django.http import HttpResponseNotFound
+import requests
 
 
 class MyProfileDetailProxy(ProxyView):
@@ -71,33 +74,44 @@ class CreatePostAPIView(ProxyView):
         return headers
 
 
-class UserPostsAPIView(ProxyView):
-    proxy_host = 'http://127.0.0.1:9001'
-    source = 'userPostList/'
-    return_raw = True
+# class UserPostsAPIView(ProxyView):
+#     proxy_host = 'http://127.0.0.1:9001'
+#     source = 'userPostList/'
+#     return_raw = True
+#
+# #     def get(self, request, *args, **kwargs):
+# #         if not User.objects.filter(username=self.kwargs["blogger"]).exists():
+# #             return HttpResponseNotFound("No existe ningún blog con este nombre")
+#
+#     def get_headers(self, request):
+#         headers = super(UserPostsAPIView, self).get_headers(request)
+#         if User.objects.filter(username=self.kwargs["blogger"]).exists:
+#             usuario = User.objects.get(username=self.kwargs["blogger"])
+#             headers['X-Blogger'] = usuario.username
+#             headers['X-BloggerId'] = str(usuario.id)
+#         return headers
 
-    # def get_headers(self, request):
-    #     headers = super(UserPostsAPIView, self).get_headers(request)
-    #     if request.user.is_authenticated():
-    #         headers['Authorization'] = str(request.user.id)
-    #     return headers
+class UserPostsAPIView(View):
+    """
 
-    # def get(self, request, *args, **kwargs):
-    #     usuario = User.objects.get(username=self.kwargs["blogger"])
-    #     if not usuario:
-    #         return HttpResponseNotFound("No existe ningún blog con este nombre")
-    #     else:
-    #         self.get_headers(self, request, usuario.username, usuario.id)
-            #     posts = self.get_queryset()
-            #     context = {'posts_list': posts, 'blogger': self.kwargs["blogger"]}
-            #     return render(request, 'post/user_posts.html', context)
+    """
 
-    def get_headers(self, request, *args, **kwargs):
-        usuario = User.objects.get(username=self.kwargs["blogger"])
-        if not usuario:
+    def get(self, request, *args, **kwargs):
+        if not User.objects.filter(username=self.kwargs["blogger"]).exists():
             return HttpResponseNotFound("No existe ningún blog con este nombre")
         else:
-            headers = super(UserPostsAPIView, self).get_headers(request)
-            headers['X-Blogger'] = usuario.username
-            headers['X-BloggerId'] = str(usuario.id)
-        return headers
+            usuario = User.objects.get(username=self.kwargs["blogger"])
+            url = 'http://127.0.0.1:9001/userPostList/'
+            headers = {
+                'XBLOGGER': usuario.username,
+                'XBLOGGERID': str(usuario.id)
+            }
+            # super(UserPostsAPIView, self).get_headers(request, usuario)
+            response = requests.get(url, headers=headers)
+            return HttpResponse(response.text, status=response.status_code)
+
+    # def get_headers(self, request, usuario):
+    #     headers = super(UserPostsAPIView, self).get_headers(request)
+    #     headers['X-Blogger'] = usuario.username
+    #     headers['X-BloggerId'] = str(usuario.id)
+    #     return headers
