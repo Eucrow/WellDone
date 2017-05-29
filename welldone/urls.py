@@ -22,7 +22,7 @@ from welldone import settings
 
 from django.conf.urls.static import static
 
-from welldone.views import PostAPIView, CreatePostAPIView, UserPostsAPIView, CreateCommentProxy
+from welldone.views import PostAPIView, CreatePostAPIView, UserPostsAPIView, CommentProxy
 
 from users import urls as users_urls
 
@@ -37,6 +37,6 @@ urlpatterns = [
     url(r'^new-post$', CreatePostAPIView.as_view(), name='create_post'),
 
     #conexion al microservicio de comments
-    url(r'^create-comment$', CreateCommentProxy.as_view(), name='create_comment')
+    url(r'^comment$', CommentProxy.as_view(), name='comment')
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,12 +7,12 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseNotFound
 
 
-class CreateCommentProxy(ProxyView):
+class CommentProxy(ProxyView):
     """
     Proxy to create comment endpoint
     """
     proxy_host = 'http://127.0.0.1:9003'
-    source = 'api/1.0/create_comment'
+    source = 'api/1.0/comment'
     return_raw = True
 
 
