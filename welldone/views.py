@@ -7,6 +7,16 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseNotFound
 
 
+class CreateCommentProxy(ProxyView):
+    """
+    Proxy to create comment endpoint
+    """
+    proxy_host = 'http://127.0.0.1:9003'
+    source = 'api/1.0/create_comment'
+    return_raw = True
+
+
+
 class PostAPIView(ProxyView):
     proxy_host = 'http://127.0.0.1:9001'
     source = 'postList/'

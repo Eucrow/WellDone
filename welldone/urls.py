@@ -19,16 +19,13 @@ from django.contrib import admin
 
 from welldone import settings
 
-from users import urls as users_urls
-
 
 from django.conf.urls.static import static
 
-from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView, CreatePostAPIView, UserPostsAPIView
+from welldone.views import PostAPIView, CreatePostAPIView, UserPostsAPIView, CreateCommentProxy
 
 from users import urls as users_urls
 
-from welldone.views import ProfileDetailProxy, MyProfileDetailProxy, PostAPIView, CreatePostAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -38,5 +35,8 @@ urlpatterns = [
 
     #conexion al microservicio de posts
     url(r'^new-post$', CreatePostAPIView.as_view(), name='create_post'),
+
+    #conexion al microservicio de comments
+    url(r'^create-comment$', CreateCommentProxy.as_view(), name='create_comment')
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
