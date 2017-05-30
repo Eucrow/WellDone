@@ -12,9 +12,25 @@ class CommentProxy(ProxyView):
     Proxy to create comment endpoint
     """
     proxy_host = 'http://127.0.0.1:9003'
-    source = 'api/1.0/comment'
+    source = 'api/1.0/comment%(url)s'
     return_raw = True
 
+    def get_headers(self, request):
+        headers = super(CommentProxy, self).get_headers(request)
+        if request.user.is_authenticated():
+            user = {
+                "id": request.user.id,
+                "username": request.user.username,
+                "email": request.user.email,
+                "first_name": request.user.first_name,
+                "last_name": request.user.last_name,
+                "is_active": request.user.is_active,
+                "is_staff": request.user.is_staff,
+                "is_superuser": request.user.is_superuser,
+                #"is_authenticated": request.user.is_authenticated #doesn't work
+            }
+            headers['Authorization'] = json.dumps(user)
+        return headers
 
 
 class PostAPIView(ProxyView):
@@ -65,10 +81,10 @@ class UserPostsAPIView(ProxyView):
         if not usuario:
             return HttpResponseNotFound("No existe ningún blog con este nombre")
         else:
-            self.get_headers(self, request, usuario.username, usuario.id )
-        #     posts = self.get_queryset()
-        #     context = {'posts_list': posts, 'blogger': self.kwargs["blogger"]}
-        #     return render(request, 'post/user_posts.html', context)
+            self.get_headers(self, request, usuario.username, usuario.id)
+            #     posts = self.get_queryset()
+            #     context = {'posts_list': posts, 'blogger': self.kwargs["blogger"]}
+            #     return render(request, 'post/user_posts.html', context)
 
 
     def get_headers(self, request, blogger, blogger_id):

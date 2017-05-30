@@ -37,6 +37,6 @@ urlpatterns = [
     url(r'^new-post$', CreatePostAPIView.as_view(), name='create_post'),
 
     #conexion al microservicio de comments
-    url(r'^comment$', CommentProxy.as_view(), name='comment')
+    url(r'^comment(?P<url>.+)$', CommentProxy.as_view(), name='comment')
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
