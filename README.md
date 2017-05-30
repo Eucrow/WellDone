@@ -1,5 +1,5 @@
 # WellDone
-WellDone: KeepCoding bootcamp final practise
+WellDone: KeepCoding bootcamp final practice
 
 To install dependences, with the environment activate:
 ```pip install -r requirements.txt```
