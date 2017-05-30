@@ -58,27 +58,19 @@ class CreatePostAPIView(ProxyView):
         return headers
 
 
-# class UserPostsAPIView(ProxyView):
-#     proxy_host = 'http://127.0.0.1:9001'
-#     source = 'userPostList/'
-#     return_raw = True
-#
-# #     def get(self, request, *args, **kwargs):
-# #         if not User.objects.filter(username=self.kwargs["blogger"]).exists():
-# #             return HttpResponseNotFound("No existe ningún blog con este nombre")
-#
-#     def get_headers(self, request):
-#         headers = super(UserPostsAPIView, self).get_headers(request)
-#         if User.objects.filter(username=self.kwargs["blogger"]).exists:
-#             usuario = User.objects.get(username=self.kwargs["blogger"])
-#             headers['X-Blogger'] = usuario.username
-#             headers['X-BloggerId'] = str(usuario.id)
-#         return headers
+class PostDetailView(View):
+    def get(self, request, *args, **kwargs):
+        url = 'http://127.0.0.1:9001/postDetail/'
+        headers = {
+            'X-BLOGGER': self.kwargs["blogger"],
+            'X-POSTID': self.kwargs["pk"]
+        }
+        response = requests.get(url, headers=headers)
+        return HttpResponse(response.text, status=response.status_code)
+
+
 
 class UserPostsAPIView(View):
-    """
-
-    """
 
     def get(self, request, *args, **kwargs):
         if not User.objects.filter(username=self.kwargs["blogger"]).exists():
@@ -90,12 +82,6 @@ class UserPostsAPIView(View):
                 'XBLOGGER': usuario.username,
                 'XBLOGGERID': str(usuario.id)
             }
-            # super(UserPostsAPIView, self).get_headers(request, usuario)
             response = requests.get(url, headers=headers)
             return HttpResponse(response.text, status=response.status_code)
 
-    # def get_headers(self, request, usuario):
-    #     headers = super(UserPostsAPIView, self).get_headers(request)
-    #     headers['X-Blogger'] = usuario.username
-    #     headers['X-BloggerId'] = str(usuario.id)
-    #     return headers
