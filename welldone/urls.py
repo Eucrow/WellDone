@@ -22,7 +22,7 @@ from welldone import settings
 
 from django.conf.urls.static import static
 
-from welldone.views import PostAPIView, CreatePostAPIView, UserPostsAPIView, CommentProxy
+from welldone.views import PostAPIView, CreatePostAPIView, UserPostsAPIView, CommentProxy, PostDetailView
 
 from users import urls as users_urls
 
@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', PostAPIView.as_view(), name='posts_home'),
     url(r'^blogs/(?P<blogger>[a-z0-9_-]+)/$', UserPostsAPIView.as_view(), name='post_usersposts'),
+    url(r'^blogs/(?P<blogger>[a-z0-9_-]+)/(?P<pk>[0-9]+)$', PostDetailView.as_view(), name='post_postdetail'),
     url(r'', include(users_urls)),
 
     #conexion al microservicio de posts
