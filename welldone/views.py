@@ -29,8 +29,7 @@ class CommentProxy(ProxyView):
                 "last_name": request.user.last_name,
                 "is_active": request.user.is_active,
                 "is_staff": request.user.is_staff,
-                "is_superuser": request.user.is_superuser,
-                #"is_authenticated": request.user.is_authenticated #doesn't work
+                "is_superuser": request.user.is_superuser
             }
             headers['Authorization'] = json.dumps(user)
         return headers
