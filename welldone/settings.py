@@ -175,3 +175,10 @@ JWT_AUTH = {
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer'
 }
+
+# Microservices URLs
+MICROSERVICES = {
+    "ListPostsMServ": "http://127.0.0.1:9001",
+    "CreatePostsMServ": "http://127.0.0.1:9002",
+    "CommentsPostsMServ": "http://127.0.0.1:9003",
+}

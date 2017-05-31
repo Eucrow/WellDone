@@ -9,12 +9,14 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseNotFound
 import requests
 
+from welldone import settings
+
 
 class CommentProxy(ProxyView):
     """
     Proxy to create comment endpoint
     """
-    proxy_host = 'http://127.0.0.1:9003'
+    proxy_host = settings.MICROSERVICES.get('CommentsPostsMServ')
     source = 'api/1.0/comment%(url)s'
     return_raw = True
 
@@ -36,7 +38,7 @@ class CommentProxy(ProxyView):
 
 
 class PostAPIView(ProxyView):
-    proxy_host = 'http://127.0.0.1:9001'
+    proxy_host = settings.MICROSERVICES.get('ListPostsMServ')
     source = 'postList/'
     return_raw = True
 
@@ -45,7 +47,7 @@ class CreatePostAPIView(ProxyView):
     permission_classes = (IsAuthenticated,)
 
     # Salto directamente al microservicio de post, para usar postman al crear no hace falta generar ninguna web
-    proxy_host = 'http://127.0.0.1:9002'
+    proxy_host = settings.MICROSERVICES.get('CreatePostsMServ')
     source = 'api/1.0/posts/'
     return_raw = True
 
@@ -71,7 +73,7 @@ class CreatePostAPIView(ProxyView):
 
 class PostDetailView(View):
     def get(self, request, *args, **kwargs):
-        url = 'http://127.0.0.1:9001/postDetail/'
+        url = settings.MICROSERVICES.get('ListPostsMServ') + '/postDetail/'
         headers = {
             'X-BLOGGER': self.kwargs["blogger"],
             'X-POSTID': self.kwargs["pk"]
@@ -88,7 +90,7 @@ class UserPostsAPIView(View):
             return HttpResponseNotFound("No existe ningún blog con este nombre")
         else:
             usuario = User.objects.get(username=self.kwargs["blogger"])
-            url = 'http://127.0.0.1:9001/userPostList/'
+            url = settings.MICROSERVICES.get('ListPostsMServ') + '/userPostList/'
             headers = {
                 'XBLOGGER': usuario.username,
                 'XBLOGGERID': str(usuario.id)
