@@ -52,8 +52,20 @@ class CreatePostAPIView(ProxyView):
     def get_headers(self, request):
         headers = super(CreatePostAPIView, self).get_headers(request)
         if request.user.is_authenticated():
-            headers['Authorization'] = str(request.user.pk)
-            headers['X-Username'] = request.user.username
+            user = {
+                "id": request.user.id,
+                "username": request.user.username,
+                # "email": request.user.email,
+                # "first_name": request.user.first_name,
+                # "last_name": request.user.last_name,
+                # "is_active": request.user.is_active,
+                # "is_staff": request.user.is_staff,
+                # "is_superuser": request.user.is_superuser
+            }
+            headers['Authorization'] = json.dumps(user)
+            # Como en la cabecera se le pasa el id del usuario y el username, esas dos líneas no hacen falta para crear el post:
+            #headers['Authorization'] = str(request.user.pk)
+            #headers['X-Username'] = request.user.username
         return headers
 
 
